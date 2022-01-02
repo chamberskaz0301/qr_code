@@ -1,5 +1,3 @@
-
-
 <?php
  echo $_GET['data']
 ?> 
@@ -15,6 +13,8 @@
     <p>QRテスト</p>
     <form method="GET" action="result.php">
         <input type="text" name="data">
+        <input type="text" name="data">
+
         <input type="submit" value="QRコードを表示する">
     </form>
 </body>

@@ -5,7 +5,10 @@
     // URLを定数に設定
     $url = 'create.php?data='.$_GET['data'];
 
-    echo $_GET['data']
+    echo $_GET['data'];
+  
+
+
 
 ?>
 
