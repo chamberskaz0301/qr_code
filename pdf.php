@@ -2,6 +2,19 @@
     //TCPDFというライブラリを読み込む
     require_once('./lib/tcpdf.php');
 
+    session_start();
+
+    $name = $_SESSION['name'];
+    $name_jp = $_SESSION['name_jp'];
+    $age = $_SESSION['age'];
+    $gender = $_SESSION['gender'];
+    $phone = $_SESSION['phone'];
+    $address = $_SESSION['address'];
+    $condition = $_SESSION['condition'];
+    $treat = $_SESSION['treat'];
+    $allergy = $_SESSION['allergy'];
+
+    
     //TCPDFクラスのインスタンス作成
     /**
      * 引数1:用紙の向き(P:portrait:縦向き（標準設定）
@@ -71,15 +84,15 @@
      * 引数2:出力する起点となるY軸の座標
      * 引数3:出力する文字列
      */
-    $pdf->Text(10, 15, "氏名:");
-    $pdf->Text(10, 30, "しめい:");
-    $pdf->Text(10, 45, "生年月日:");
-    $pdf->Text(10, 60, "性別:");
-    $pdf->Text(10, 75, "電話番号:");
-    $pdf->Text(10, 90, "住所:");
+    $pdf->Text(10, 15, "氏名:".$name); 
+    $pdf->Text(10, 30, "しめい:".$name_jp);
+    $pdf->Text(10, 45, "年齢:".$age);
+    $pdf->Text(10, 60, "性別:".$gender);
+    $pdf->Text(10, 75, "電話番号:".$phone);
+    $pdf->Text(10, 90, "住所:".$address);
     $pdf->Text(10, 105, "どのような状況ですか？:");
     $pdf->Text(10, 120, "現在治療中の病気はありますか？:");
-    $pdf->Text(10, 135, "アレルギー体質ですか？:");
+    $pdf->Text(10, 135, "アレルギー体質ですか？:".$allergy);
 
     /**
      * PDFを出力する
