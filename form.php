@@ -1,3 +1,21 @@
+<?php
+    session_start();
+    $error = "";
+    $name = $_POST["name"];
+    $name_jp = $_POST["name_jp"];
+    $age = $_POST["age"];
+    $sex = $_POST["sex"];
+    $phone = $_POST["phone"];
+    $address = $_POST["address"];
+    $condition = $_POST["condition"];
+    $treat = $_POST["treat"];
+    $allergy = $_POST["allergy"];
+
+    
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +33,7 @@
 
     
 
-    <form action="date.php" method="get">
+    <form action="date.php" method="post">
         <p>
            氏名:<input type="text" name="name"> 
         </p>
@@ -74,6 +92,10 @@
         
 
     </form>
+
     
+
+
+
 </body>
 </html>

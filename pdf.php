@@ -1,10 +1,6 @@
 <?php
-
-require_once('../lib/tcpdf.php');
-
-<?php
     //TCPDFというライブラリを読み込む
-    require_once('../lib/tcpdf.php');
+    require_once('./lib/tcpdf.php');
 
     //TCPDFクラスのインスタンス作成
     /**
@@ -21,7 +17,7 @@ require_once('../lib/tcpdf.php');
      * 引数5:PDFの文字コード(UTF-8が標準設定)
      * 引数6:PDF作成時にメモリの消費量を抑える時にはTureを設定する
      */
-    $pdf = new TCPDF("L", "mm", "A4");
+    $pdf = new TCPDF("P", "mm", "A4");
 
     /**
      * ドキュメントヘッダーの出力設定
@@ -34,7 +30,7 @@ require_once('../lib/tcpdf.php');
      * 小塚明朝フォントを使って文字を表現する
      * 3番目の要素はフォントサイズ（文字の大きさ）を指定する
      */
-    $header_font = array('kozminproregular', '', 9);
+    $header_font = array('kozminproregular', '', 20);
 
     /**
      * setHeaderFontメソッドでヘッダー部の文字の体裁を決める
@@ -52,7 +48,7 @@ require_once('../lib/tcpdf.php');
      * 引数3:ヘッダーのタイトル
      * 引数4:ヘッダーに表示する文字列
      */
-    $pdf->setHeaderData('', 0, 'ヘッダータイトル', '文字を出力します');
+    $pdf->setHeaderData('', 10, '問診票', '文字を出力します');
 
     /**
      * 本文に出力するフォントの設定
@@ -75,9 +71,15 @@ require_once('../lib/tcpdf.php');
      * 引数2:出力する起点となるY軸の座標
      * 引数3:出力する文字列
      */
-    $pdf->Text(10, 15, "1行目：練習問題１の完成PDF");
-    $pdf->Text(10, 30, "2行目：練習問題１の完成PDF");
-    $pdf->Text(10, 45, "3行目：練習問題１の完成PDF");
+    $pdf->Text(10, 15, "氏名:");
+    $pdf->Text(10, 30, "しめい:");
+    $pdf->Text(10, 45, "生年月日:");
+    $pdf->Text(10, 60, "性別:");
+    $pdf->Text(10, 75, "電話番号:");
+    $pdf->Text(10, 90, "住所:");
+    $pdf->Text(10, 105, "どのような状況ですか？:");
+    $pdf->Text(10, 120, "現在治療中の病気はありますか？:");
+    $pdf->Text(10, 135, "アレルギー体質ですか？:");
 
     /**
      * PDFを出力する
@@ -89,9 +91,4 @@ require_once('../lib/tcpdf.php');
      *          S:PDFドキュメントを文字列として出力する
      */
     $pdf->Output("Sample.pdf", "I");
-?>
-
-
-
-
 ?>

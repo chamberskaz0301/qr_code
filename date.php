@@ -15,7 +15,7 @@
 
     
 
-    <form action="date.php" method="get">
+    <form action="pdf.php" method="get">
         <p>
            氏名:<?php echo $_GET["name"]; ?> 
         </p>
