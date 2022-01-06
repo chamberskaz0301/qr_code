@@ -118,7 +118,7 @@
     ?>
     
 
-    <form action="pdf.php" method="get">
+    <form action="pdf.php" method="post">
         <p>
            氏名:<?php echo $_SESSION['name']; ?> 
         </p>

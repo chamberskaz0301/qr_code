@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>問診票</title>
+    <script src="./checkbox.js"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -17,21 +18,21 @@
 
     if(isset($_POST['back'])){
         //htmlentities()でHTMLコードをエスケープします。
-        $html['name'] =               htmlentities($_SESSION['name'], ENT_QUOTES, 'UTF-8');
-        $html["name_jp"] =    htmlentities($_SESSION["name_jp"], ENT_QUOTES, 'UTF-8');
+        $html['name'] = htmlentities($_SESSION['name'], ENT_QUOTES, 'UTF-8');
+        $html["name_jp"] = htmlentities($_SESSION["name_jp"], ENT_QUOTES, 'UTF-8');
         $html['age'] = htmlentities($_SESSION["age"], ENT_QUOTES, 'UTF-8');
-        $html["gender"] =       htmlentities($_SESSION["gender"], ENT_QUOTES, 'UTF-8');
-        $html["phone"] =           htmlentities($_SESSION["phone"], ENT_QUOTES, 'UTF-8');
-        $html["address"] =           htmlentities($_SESSION["address"], ENT_QUOTES, 'UTF-8');
-        $html['condition']['fever'] =           htmlentities($_SESSION["condition"]['fever'], ENT_QUOTES, 'UTF-8');
-        $html['condition']['throat'] =           htmlentities($_SESSION["condition"]['throat'], ENT_QUOTES, 'UTF-8');
-        $html['condition']['cough'] =           htmlentities($_SESSION["condition"]['cough'], ENT_QUOTES, 'UTF-8');
-        $html['condition']['spit'] =           htmlentities($_SESSION["condition"]['spit'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['none'] =           htmlentities($_SESSION['treat']['none'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['hbp'] =           htmlentities($_SESSION['treat']['hbp'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['diabetic'] =           htmlentities($_SESSION['treat']['diabetic'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['asthma'] =           htmlentities($_SESSION['treat']['asthma'], ENT_QUOTES, 'UTF-8');
-        $html["allergy"] =           htmlentities($_SESSION["allergy"], ENT_QUOTES, 'UTF-8');
+        $html["gender"] = htmlentities($_SESSION["gender"], ENT_QUOTES, 'UTF-8');
+        $html["phone"] = htmlentities($_SESSION["phone"], ENT_QUOTES, 'UTF-8');
+        $html["address"] = htmlentities($_SESSION["address"], ENT_QUOTES, 'UTF-8');
+        $html['condition']['fever'] = htmlentities($_SESSION["condition"]['fever'], ENT_QUOTES, 'UTF-8');
+        $html['condition']['throat'] = htmlentities($_SESSION["condition"]['throat'], ENT_QUOTES, 'UTF-8');
+        $html['condition']['cough'] = htmlentities($_SESSION["condition"]['cough'], ENT_QUOTES, 'UTF-8');
+        $html['condition']['spit'] = htmlentities($_SESSION["condition"]['spit'], ENT_QUOTES, 'UTF-8');
+        $html['treat']['none'] = htmlentities($_SESSION['treat']['none'], ENT_QUOTES, 'UTF-8');
+        $html['treat']['hbp'] = htmlentities($_SESSION['treat']['hbp'], ENT_QUOTES, 'UTF-8');
+        $html['treat']['diabetic'] = htmlentities($_SESSION['treat']['diabetic'], ENT_QUOTES, 'UTF-8');
+        $html['treat']['asthma'] = htmlentities($_SESSION['treat']['asthma'], ENT_QUOTES, 'UTF-8');
+        $html["allergy"] = htmlentities($_SESSION["allergy"], ENT_QUOTES, 'UTF-8');
     //初期値
     }else{
         //初期化
@@ -93,19 +94,18 @@
 
 
         <p>どのような状況ですか？<br>
-            <input type="checkbox" name="condition[fever]" value="fever"<?php if($html['condition']['fever'] == 'fever') echo ' checked';?> >発熱
-            <input type="checkbox" name="condition[throat]" value="throat"<?php if($html['condition']['throat'] == 'throat') echo ' checked';?>>のどの痛み
-            <input type="checkbox" name="condition[cough]" value="cough"<?php if($html['condition']['cough'] == 'cough') echo ' checked';?>>せき
-            <input type="checkbox" name="condition[spit]" value="spit"<?php if($html['condition']['spit'] == 'spit') echo ' checked';?>>たん
+            <input type="checkbox" name="condition[fever]" value="発熱"<?php if($html['condition']['fever'] == 'fever') echo ' checked';?> >発熱
+            <input type="checkbox" name="condition[throat]" value="のどの痛み"<?php if($html['condition']['throat'] == 'throat') echo ' checked';?>>のどの痛み
+            <input type="checkbox" name="condition[cough]" value="せき"<?php if($html['condition']['cough'] == 'cough') echo ' checked';?>>せき
+            <input type="checkbox" name="condition[spit]" value="たん"<?php if($html['condition']['spit'] == 'spit') echo ' checked';?>>たん
         </p>
 
-        <!-- はい、いいえの分岐処理 -->
         <p>現在治療中の病気はありますか？<br>
-            <input type="checkbox" name="treat[none]" value="none"<?php if($html['treat']['none'] == 'none') echo ' checked';?> >なし
+            <input type="checkbox" name="treat[none]" value="いいえ"<?php if($html['treat']['none'] == 'none') echo ' checked';?> id="0" >なし
             ・ありの方は下記から選んでください。<br/>
-            <input type="checkbox" name="treat[hbp]" value="hbp"<?php if($html['treat']['hbp'] == 'hbp') echo ' checked';?>>高血圧
-            <input type="checkbox" name="treat[diabetic]" value="diabetic"<?php if($html['treat']['diabetic'] == 'diabetic') echo ' checked';?>>糖尿病
-            <input type="checkbox" name="treat[asthma]" value="asthma"<?php if($html['treat']['asthma'] == 'asthma') echo ' checked';?>>ぜんそく
+            <input type="checkbox" name="treat[hbp]" value="高血圧"<?php if($html['treat']['hbp'] == 'hbp') echo ' checked';?> onclick="changeDisabled();" >高血圧
+            <input type="checkbox" name="treat[diabetic]" value="糖尿病"<?php if($html['treat']['diabetic'] == 'diabetic') echo ' checked';?> onclick="changeDisabled();">糖尿病
+            <input type="checkbox" name="treat[asthma]" value="ぜんそく"<?php if($html['treat']['asthma'] == 'asthma') echo ' checked';?> onclick="changeDisabled();">ぜんそく
         </p>
 
 
