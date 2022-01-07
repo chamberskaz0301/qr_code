@@ -84,9 +84,9 @@
 
 
     </form>
-
-    
-    <script src="main.js"></script>
+<!-- 
+    phpでのバリデーション処理終了後再度再開
+    <script src="main.js"></script> -->
 
 
 
