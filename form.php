@@ -101,11 +101,12 @@
         </p>
 
         <p>現在治療中の病気はありますか？<br>
-            <input type="checkbox" name="treat[none]" value="いいえ"<?php if($html['treat']['none'] == 'none') echo ' checked';?> id="0" >なし
+            <input type="checkbox" name="treat[none]" value="いいえ"<?php if($html['treat']['none'] == 'none') echo ' checked';?> id="treat1" onClick="treatflg1(this.checked);" >なし
+            <input type="checkbox" name="treat[none]" value="はい"<?php if($html['treat']['none'] == 'none') echo ' checked';?>  id="treat2" onClick="treatflg2(this.checked);" >あり
             ・ありの方は下記から選んでください。<br/>
-            <input type="checkbox" name="treat[hbp]" value="高血圧"<?php if($html['treat']['hbp'] == 'hbp') echo ' checked';?> onclick="changeDisabled();" >高血圧
-            <input type="checkbox" name="treat[diabetic]" value="糖尿病"<?php if($html['treat']['diabetic'] == 'diabetic') echo ' checked';?> onclick="changeDisabled();">糖尿病
-            <input type="checkbox" name="treat[asthma]" value="ぜんそく"<?php if($html['treat']['asthma'] == 'asthma') echo ' checked';?> onclick="changeDisabled();">ぜんそく
+            <input type="checkbox" name="treat[hbp]" value="高血圧"<?php if($html['treat']['hbp'] == 'hbp') echo ' checked';?> id="disease1" disabled="disabled" >高血圧
+            <input type="checkbox" name="treat[diabetic]" value="糖尿病"<?php if($html['treat']['diabetic'] == 'diabetic') echo ' checked';?> id="disease2" disabled="disabled" >糖尿病
+            <input type="checkbox" name="treat[asthma]" value="ぜんそく"<?php if($html['treat']['asthma'] == 'asthma') echo ' checked';?>  id="disease3" disabled="disabled" >ぜんそく
         </p>
 
 
@@ -117,12 +118,7 @@
 
         <input type="submit" name="confirm" value="送信する">
 
-        
-
     </form>
-
-    
-
 
 
 </body>
