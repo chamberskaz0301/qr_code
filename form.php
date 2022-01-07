@@ -18,11 +18,16 @@
 
     <h2>以下のフォームに情報を入力してさい</h2>
 
-    
-
+ 
+  
+ 
+ 
     <form action="date.php" method="post">
+        
+   
+
         <p>
-           氏名:<input type="text" name="name" , value="<?php echo  $html['name']; ?>"> 
+           氏名:<input type="text" name="name"  id="fullName", value="<?php echo  $html['name']; ?>"> 
         </p>
         
         <p>
@@ -41,9 +46,10 @@
 
                 
         <p>
-           電話番号:<input type="text" name="phone" , value="<?php echo  $html['phone']; ?>" >
+           携帯番号:<input type="text" name="phone" id="tel" , value="<?php echo  $html['phone']; ?>" >
         </p>
-        
+       
+
                 
         <p>
            住所:<input type="text" name="address" , value="<?php echo  $html['address']; ?>">  
@@ -73,10 +79,15 @@
         </p>
         
 
-        <input type="submit" name="confirm" value="送信する">
+        <input type="submit" name="confirm" value="送信する" onclick="validate()">
+      
+
 
     </form>
+
     
+    <script src="main.js"></script>
+
 
 
 </body>
