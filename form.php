@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,48 +11,7 @@
 <body>
     <?php
     session_start();
-
-    $html = array();
-
-    if(isset($_POST['back'])){
-        //htmlentities()でHTMLコードをエスケープします。
-        $html['name'] = htmlentities($_SESSION['name'], ENT_QUOTES, 'UTF-8');
-        $html["name_jp"] = htmlentities($_SESSION["name_jp"], ENT_QUOTES, 'UTF-8');
-        $html['age'] = htmlentities($_SESSION["age"], ENT_QUOTES, 'UTF-8');
-        $html["gender"] = htmlentities($_SESSION["gender"], ENT_QUOTES, 'UTF-8');
-        $html["phone"] = htmlentities($_SESSION["phone"], ENT_QUOTES, 'UTF-8');
-        $html["address"] = htmlentities($_SESSION["address"], ENT_QUOTES, 'UTF-8');
-        $html['condition']['fever'] = htmlentities($_SESSION["condition"]['fever'], ENT_QUOTES, 'UTF-8');
-        $html['condition']['throat'] = htmlentities($_SESSION["condition"]['throat'], ENT_QUOTES, 'UTF-8');
-        $html['condition']['cough'] = htmlentities($_SESSION["condition"]['cough'], ENT_QUOTES, 'UTF-8');
-        $html['condition']['spit'] = htmlentities($_SESSION["condition"]['spit'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['none'] = htmlentities($_SESSION['treat']['none'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['hbp'] = htmlentities($_SESSION['treat']['hbp'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['diabetic'] = htmlentities($_SESSION['treat']['diabetic'], ENT_QUOTES, 'UTF-8');
-        $html['treat']['asthma'] = htmlentities($_SESSION['treat']['asthma'], ENT_QUOTES, 'UTF-8');
-        $html["allergy"] = htmlentities($_SESSION["allergy"], ENT_QUOTES, 'UTF-8');
-    //初期値
-    }else{
-        //初期化
-        $_SESSION =  array();
-        $html['name'] =  '';
-        $html['name_jp'] = '';
-        $html['age'] = '';
-        $html['gender'] = '';
-        $html['phone'] =  '';
-        $html['address'] =  '';
-        $html['condition']['fever'] = '';
-        $html['condition']['throat'] =  '';
-        $html['condition']['cough'] = '';
-        $html['condition']['spit'] =  '';
-        $html['treat']['none'] = '';
-        $html['treat']['hbp'] =  '';
-        $html['treat']['diabetic'] =  '';
-        $html['treat']['asthma'] =  '';
-        $html['allergy'] =  '';
-    }
-
-
+    require_once('./htmlentities.php');
     ?>
 
     <h1>内科問診票</h1>
@@ -119,6 +76,7 @@
         <input type="submit" name="confirm" value="送信する">
 
     </form>
+    
 
 
 </body>
