@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '219c637a060542baf0954cd8f8100c1f5965fa00',
+        'reference' => '37ddbd7f1fa17faa3b425180bbd58713dfda246c',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '219c637a060542baf0954cd8f8100c1f5965fa00',
+            'reference' => '37ddbd7f1fa17faa3b425180bbd58713dfda246c',
             'dev_requirement' => false,
         ),
         'vlucas/valitron' => array(

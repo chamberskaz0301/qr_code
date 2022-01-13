@@ -1,5 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["errors"])){
+    $errors = $_SESSION["errors"];
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,10 +15,16 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+
     <?php
-    session_start();
     require_once('./htmlentities.php');
     ?>
+
+    <?php if(isset($errors)) : ?>
+        <?php foreach($errors as $value): ?>
+            <?php echo $value; ?><br />
+        <?php endforeach; ?>
+    <?php endif; ?>
 
     <h1>内科問診票</h1>
 
@@ -31,7 +43,7 @@
         </p>
         
         <p>
-           しめい:<input type="text" name="name_jp", value="<?php echo  $html['name_jp']; ?>"> 
+           しめい:<input type="text" name="kana", value="<?php echo  $html['kana']; ?>"> 
         </p>
         
         <p>
@@ -39,8 +51,8 @@
         </p>
 
         <p>男性ですか女性ですか？<br>
-            <input type="radio" name="gender" value="男"> 男
-            <input type="radio" name="gender" value="女"> 女
+        <input type="radio" name="gender" value="男<?php if(isset($_SESSION['gender'])){echo $_SESSION['gender'];}?>"> 男
+        <input type="radio" name="gender" value="女<?php if(isset($_SESSION['gender'])){echo $_SESSION['gender'];}?>"> 女    
         </p>
 
 
@@ -56,7 +68,7 @@
         </p>
 
 
-        <p>どのような状況ですか？<br>
+        <p>どのような症状ですか？<br>
             <input type="checkbox" name="condition[fever]" value="発熱"<?php if($html['condition']['fever'] == 'fever') echo ' checked';?> >発熱
             <input type="checkbox" name="condition[throat]" value="のどの痛み"<?php if($html['condition']['throat'] == 'throat') echo ' checked';?>>のどの痛み
             <input type="checkbox" name="condition[cough]" value="せき"<?php if($html['condition']['cough'] == 'cough') echo ' checked';?>>せき

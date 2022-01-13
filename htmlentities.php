@@ -5,7 +5,7 @@ $html = array();
 if(isset($_POST['back'])){
     //HTMLコードをエスケープ
     $html['name'] = htmlentities($_SESSION['name'], ENT_QUOTES, 'UTF-8');
-    $html["name_jp"] = htmlentities($_SESSION["name_jp"], ENT_QUOTES, 'UTF-8');
+    $html["kana"] = htmlentities($_SESSION["kana"], ENT_QUOTES, 'UTF-8');
     $html['age'] = htmlentities($_SESSION["age"], ENT_QUOTES, 'UTF-8');
     $html["gender"] = htmlentities($_SESSION["gender"], ENT_QUOTES, 'UTF-8');
     $html["phone"] = htmlentities($_SESSION["phone"], ENT_QUOTES, 'UTF-8');
@@ -24,7 +24,7 @@ if(isset($_POST['back'])){
     //初期化
     $_SESSION =  array();
     $html['name'] =  '';
-    $html['name_jp'] = '';
+    $html['kana'] = '';
     $html['age'] = '';
     $html['gender'] = '';
     $html['phone'] =  '';

@@ -5,7 +5,7 @@
 
 
     $name = $_SESSION['name'];
-    $name_jp = $_SESSION['name_jp'];
+    $kana = $_SESSION['kana'];
     $age = $_SESSION['age'];
     $gender = $_SESSION['gender'];
     $phone = $_SESSION['phone'];
@@ -34,7 +34,7 @@
     $pdf->AddPage();
 
     $pdf->Text(10, 15, "氏名:".$name); 
-    $pdf->Text(10, 30, "しめい:".$name_jp);
+    $pdf->Text(10, 30, "しめい:".$kana);
     $pdf->Text(10, 45, "年齢:".$age);
     $pdf->Text(10, 60, "性別:".$gender);
     $pdf->Text(10, 75, "電話番号:".$phone);
