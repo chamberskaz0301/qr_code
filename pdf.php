@@ -1,5 +1,5 @@
 <?php
-    require_once('./lib/tcpdf.php');
+    require_once('./lib/tcpdf/tcpdf.php');
 
     session_start();
 
@@ -16,7 +16,7 @@
  
    
     
-    $filename = $name.".pdf";
+    $filename =$name.".pdf";
 
     $pdf = new TCPDF("P", "mm", "A4");
 
@@ -64,8 +64,9 @@
     $y += 15;
     $pdf->Text(10, $y, "アレルギー体質ですか？:".$allergy);
 
-    //$pdf->Output($filename, "D");
-    $pdf->Output($filename, "I");
+    //$pdf->Output($filename, "I");
+    //$pdf->Output($filename, "S");
+    $pdf->Output($filename, "D");
 
     //window.open($filename, '_blank');
 
@@ -73,4 +74,17 @@
     //ここでセッションデストロイするとリロードすると読みこめない
     // $_SESSION= array();
     // session_destroy();
+
+    // PDFファイルの読み込みと表示部分
+    $path = "C:\\Users\\kazma\\Downloads\\". $filename;
+    print($path);
+
+    $file = fopen($path, 'r');
+    $filedata = fread($file, filesize($path));
+    fclose($file);
+
+    header('Content-Length: ' . filesize ( $path ) );
+    header('Content-type: application/pdf');
+    
+    readfile($path);
  ?>

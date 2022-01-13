@@ -1,8 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION["errors"])){
-    $errors = $_SESSION["errors"];
-}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -17,7 +14,7 @@ if(isset($_SESSION["errors"])){
 <body>
 
     <?php
-    require_once('./htmlentities.php');
+    require_once('./lib/htmlentities.php');
     ?>
 
     <?php if(isset($errors)) : ?>
@@ -36,18 +33,17 @@ if(isset($_SESSION["errors"])){
  
     <form action="confirm.php" method="post">
         
-   
 
         <p>
-           氏名:<input type="text" name="name"  id="fullName", value="<?php echo  $html['name']; ?>"> 
+           氏名:<input type="text" name="name"  value="<?php echo  $html['name']; ?>"required >  
         </p>
         
         <p>
-           しめい:<input type="text" name="kana", value="<?php echo  $html['kana']; ?>"> 
+           しめい:<input type="text" name="kana" value="<?php echo  $html['kana']; ?> "required pattern = "^[ぁ-ん]+$" >  
         </p>
         
         <p>
-           年齢:<input type="text" name="age" , value="<?php echo  $html['age']; ?>" > 
+           年齢:<input type="number" name="age"  value="<?php echo  $html['age']; ?>" min="0" max="100" value="25"> 
         </p>
 
         <p>男性ですか女性ですか？<br>
@@ -58,13 +54,13 @@ if(isset($_SESSION["errors"])){
 
                 
         <p>
-           携帯番号:<input type="text" name="phone" id="tel" , value="<?php echo  $html['phone']; ?>" >
+           携帯番号:<input type="text" name="phone" id="tel" value="<?php echo  $html['phone']; ?>"  required pattern ="[1-9][0-9]*" >
         </p>
        
 
                 
         <p>
-           住所:<input type="text" name="address" , value="<?php echo  $html['address']; ?>">  
+           住所:<input type="text" name="address" value="<?php echo  $html['address']; ?>">  
         </p>
 
 
