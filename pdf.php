@@ -9,7 +9,6 @@
     $age = $_SESSION['age'];
     $gender = $_SESSION['gender'];
     $phone = $_SESSION['phone'];
-    $address = $_SESSION['address'];
     $conditions = $_SESSION['condition'];
     $treats = $_SESSION['treat'];
     $allergy = $_SESSION['allergy'];
@@ -38,7 +37,6 @@
     $pdf->Text(10, 45, "年齢:".$age);
     $pdf->Text(10, 60, "性別:".$gender);
     $pdf->Text(10, 75, "電話番号:".$phone);
-    $pdf->Text(10, 90, "住所:".$address);
      $pdf->Text(10, 105, "どのような状況ですか？:");
      $y = 105; 
      foreach($conditions as $condition) {
