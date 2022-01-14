@@ -31,44 +31,41 @@ session_start();
   
  
  
-    <form action="confirm.php" method="post">
+    <form action="" method="post" class="fetchForm">
         
 
         <p>
-           氏名:<input type="text" name="name"  value="<?php echo  $html['name']; ?>"required >  
+           氏名:<input type="text" name="name" class="name"  value="<?php echo  $html['name']; ?>"required >  
         </p>
         
         <p>
-           しめい:<input type="text" name="kana" value="<?php echo  $html['kana']; ?> "required pattern = "^[ぁ-ん]+$" >  
+           しめい:<input type="text" name="kana" class="kana" value="<?php echo  $html['kana']; ?>"required pattern = "^[ぁ-ん]+$" >  
         </p>
         
         <p>
-           年齢:<input type="number" name="age"  value="<?php echo  $html['age']; ?>" min="0" max="100" value="25"> 
+           年齢:<input type="number" name="age" class="age"  value="<?php echo  $html['age']; ?>" min="0" max="100" value="25"> 
         </p>
 
         <p>男性ですか女性ですか？<br>
-        <input type="radio" name="gender" value="男<?php if(isset($_SESSION['gender'])){echo $_SESSION['gender'];}?>"> 男
-        <input type="radio" name="gender" value="女<?php if(isset($_SESSION['gender'])){echo $_SESSION['gender'];}?>"> 女    
+        <input type="radio" name="gender" class="gender" value="男<?php if(isset($_SESSION['gender'])){echo $_SESSION['gender'];}?>"> 男
+        <input type="radio" name="gender" class="gender" value="女<?php if(isset($_SESSION['gender'])){echo $_SESSION['gender'];}?>"> 女    
         </p>
 
 
                 
         <p>
-           携帯番号:<input type="text" name="phone" id="tel" value="<?php echo  $html['phone']; ?>"  required pattern ="[1-9][0-9]*" >
+           携帯番号:<input type="text" name="phone" class="phone"  id="tel" value="<?php echo  $html['phone']; ?>"  required pattern ="[1-9][0-9]*" >
         </p>
        
 
-                
-        <p>
-           住所:<input type="text" name="address" value="<?php echo  $html['address']; ?>">  
-        </p>
+            
 
 
         <p>どのような症状ですか？<br>
-            <input type="checkbox" name="condition[fever]" value="発熱"<?php if($html['condition']['fever'] == 'fever') echo ' checked';?> >発熱
-            <input type="checkbox" name="condition[throat]" value="のどの痛み"<?php if($html['condition']['throat'] == 'throat') echo ' checked';?>>のどの痛み
-            <input type="checkbox" name="condition[cough]" value="せき"<?php if($html['condition']['cough'] == 'cough') echo ' checked';?>>せき
-            <input type="checkbox" name="condition[spit]" value="たん"<?php if($html['condition']['spit'] == 'spit') echo ' checked';?>>たん
+            <input type="checkbox" class="condition" name="condition[fever]" value="発熱"<?php if($html['condition']['fever'] == 'fever') echo ' checked';?> >発熱
+            <input type="checkbox"  class="condition"name="condition[throat]" value="のどの痛み"<?php if($html['condition']['throat'] == 'throat') echo ' checked';?>>のどの痛み
+            <input type="checkbox"  class="condition" name="condition[cough]" value="せき"<?php if($html['condition']['cough'] == 'cough') echo ' checked';?>>せき
+            <input type="checkbox"  class="condition" name="condition[spit]" value="たん"<?php if($html['condition']['spit'] == 'spit') echo ' checked';?>>たん
         </p>
 
         <p>現在治療中の病気はありますか？<br>
@@ -82,19 +79,19 @@ session_start();
 
 
         <p>アレルギー体質ですか？<br>
-            <input type="radio" name="allergy" value="はい"> はい
-            <input type="radio" name="allergy" value="いいえ"> いいえ
+            <input type="radio" class="allergy" name="allergy" value="はい"> はい
+            <input type="radio" class="allergy" name="allergy" value="いいえ"> いいえ
         </p>
         
 
-        <input type="submit" name="confirm" value="送信する" onclick="validate()">
-      
-
+        <!-- <input type="submit" name="confirm" value="送信する" onclick="validate()"> -->
+        <button id="button" class="send" type="submit" name="send">送信する</button>
 
     </form>
 <!-- 
     phpでのバリデーション処理終了後再度再開
     <script src="main.js"></script> -->
+    <script src="confirm.js"></script>
 
 
 

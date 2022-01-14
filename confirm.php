@@ -82,7 +82,7 @@
                 <label for="allergy">アレルギー体質ですか？</label><br>
                 <p><?php echo $_POST["allergy"]; ?></p>
             </div>
-            <input type="submit" value="PDF化する">
+            <button id="button" class="send" type="submit" name="send">PDF化する</button>
 
         </form>
         <form action="form.php" method="get">
