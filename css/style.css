@@ -12,3 +12,11 @@ h2{
 form{
     text-align: center;
 }
+
+div{
+    text-align: center;
+}
+
+.vertical{
+    display: block;
+}

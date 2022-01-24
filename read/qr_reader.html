@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>[HTML5] QRCode Reader</title>
+  <style>
+    /* 全体のレイアウト調整 */
+    #contents { display:flex; width:650px;}
+    #camera, #picture, #result { justify-content:center; margin:5px;}
+
+    /* リーダー部分 */
+    #picture { display:none; }
+    #result { border: 1px solid gray; width:300px; height:200px; padding:10px;}
+    small { color:gray; }
+  </style>
+  
+</head>
+<body>
+
+<h1>QRCode Reader</h1>
+
+<section id="contents">
+  <!-- カメラ映像 -->
+  <video id="camera" width="300" height="200" muted></video>
+
+  <!-- 処理用 -->
+  <canvas id="picture" width="300" height="200"></canvas>
+
+  <!-- 読み取り結果 -->
+  <div id="result">
+    <small>※ここに読み取り結果が表示されます※</small>
+  </div>
+</section>
+<script src="jsQR.js"></script>
+  <script src="read_qr.js"></script>
+</body>
+</html>

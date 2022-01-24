@@ -63,28 +63,37 @@
     }
     $y += 15;
     $pdf->Text(10, $y, "アレルギー体質ですか？:".$allergy);
+     $pdf->Text(10, $y, "アレルギー体質ですか？:".$i);
 
-    //$pdf->Output($filename, "I");
-    //$pdf->Output($filename, "S");
-    $pdf->Output($filename, "D");
+     /**
+     * setJPEGQualityメソッド
+     * 引数:圧縮率（1~100）
+     * 数字が小さくなると高圧縮
+     * 数値が大きくなると高画質
+     */
+    $pdf->setJPEGQuality(80);
 
-    //window.open($filename, '_blank');
+    //本文のフォント設定
+    $pdf->setFont('kozminproregular','',12);
+    $pdf->AddPage();
 
 
-    //ここでセッションデストロイするとリロードすると読みこめない
-    // $_SESSION= array();
-    // session_destroy();
+    // $pdf->Cell(400, 40, "セル１", 1, 0, "C", false, 'https://www.google.co.jp');
+    // $pdf->Cell(40, 40, "セル１", 1, 0, "C", true, 'https://www.google.co.jp');
+  
+    //$pdf->Image("a.png", 80, 60, 100, "", "", 'https://www.yahoo.co.jp');
 
-    // PDFファイルの読み込みと表示部分
-    $path = "C:\\Users\\kazma\\Downloads\\". $filename;
-    print($path);
 
-    $file = fopen($path, 'r');
-    $filedata = fread($file, filesize($path));
-    fclose($file);
+    $pdf->Output($filename, "I");
+ 
 
-    header('Content-Length: ' . filesize ( $path ) );
-    header('Content-type: application/pdf');
-    
-    readfile($path);
+
+    // if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 10)) {
+    //     session_unset(); 
+    //     session_destroy(); 
+    //     echo "session destroyed"; 
+    // }
+    // $_SESSION['start'] = time();
+
+
  ?>
