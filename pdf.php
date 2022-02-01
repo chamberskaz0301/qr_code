@@ -13,9 +13,6 @@
     $treats = $_SESSION['treat'];
     $allergy = $_SESSION['allergy'];
 
- 
-   
-    
     $filename =$name.".pdf";
 
     $pdf = new TCPDF("P", "mm", "A4");
@@ -30,7 +27,9 @@
 
     $pdf->setFont('kozminProregular', '', 26);
 
+
     $pdf->AddPage();
+
 
     $pdf->Text(10, 15, "氏名:".$name); 
     $pdf->Text(10, 30, "しめい:".$kana);
@@ -63,37 +62,18 @@
     }
     $y += 15;
     $pdf->Text(10, $y, "アレルギー体質ですか？:".$allergy);
-     $pdf->Text(10, $y, "アレルギー体質ですか？:".$i);
 
-     /**
-     * setJPEGQualityメソッド
-     * 引数:圧縮率（1~100）
-     * 数字が小さくなると高圧縮
-     * 数値が大きくなると高画質
-     */
-    $pdf->setJPEGQuality(80);
 
+    $html = '<img src="https://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=localhost/qr/complete_form.php">';
+	$pdf->writeHTML( $html, false, 0, true, false );
+    
     //本文のフォント設定
     $pdf->setFont('kozminproregular','',12);
-    $pdf->AddPage();
-
-
-    // $pdf->Cell(400, 40, "セル１", 1, 0, "C", false, 'https://www.google.co.jp');
-    // $pdf->Cell(40, 40, "セル１", 1, 0, "C", true, 'https://www.google.co.jp');
-  
-    //$pdf->Image("a.png", 80, 60, 100, "", "", 'https://www.yahoo.co.jp');
-
+    //$pdf->AddPage();
 
     $pdf->Output($filename, "I");
  
 
-
-    // if (isset($_SESSION['start']) && (time() - $_SESSION['start'] > 10)) {
-    //     session_unset(); 
-    //     session_destroy(); 
-    //     echo "session destroyed"; 
-    // }
-    // $_SESSION['start'] = time();
 
 
  ?>

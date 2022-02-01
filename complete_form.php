@@ -1,18 +1,15 @@
 <?php
     require_once('./lib/tcpdf/tcpdf.php');
+    require_once("./DBAccess.php");
 
-    session_start();
+    $db = new DBAccess();
+    $ret = $db->select("SELECT id, name, kana, age, sex, phone, condition_ch, treat_ch,allergy from png");
+    foreach($ret as $data){
 
-
-
-    $name = $_SESSION['name'];
-    $kana = $_SESSION['kana'];
-    $age = $_SESSION['age'];
-    $gender = $_SESSION['gender'];
-    $phone = $_SESSION['phone'];
-    $conditions = $_SESSION['condition'];
-    $treats = $_SESSION['treat'];
-    $allergy = $_SESSION['allergy'];
+        $condition = explode(",", $data["condition_ch"]);
+        $treat = explode(",", $data["treat_ch"]);
+    }
+    
 
 ?>
 <!DOCTYPE html>
@@ -28,32 +25,32 @@
 
 
             <div>
-                <label for="name">氏名 :<?php echo $_SESSION["name"]; ?></label>
+                <label for="name">氏名 :<?php echo $data['name']; ?></label>
                <p></p>
             </div>
             <div>
-                <label for="kana">しめい:<?php echo $_SESSION["kana"]; ?></label>
+                <label for="kana">しめい:<?php echo $data['kana']; ?></label>
                 <p></p>
             </div>
             <div>
-                <label for="age">年齢:<?php echo $_SESSION["age"]; ?></label>
+                <label for="age">年齢:<?php echo $data['age']; ?></label>
                 <p></p>
             </div>
             <div>
-                <label for="gender">性別:<?php echo $_SESSION["gender"]; ?></label><br>
+                <label for="gender">性別:<?php echo $data['sex']; ?></label><br>
                 <p></p>
             </div>
             <div>
-                <label for="phone">携帯番号:<?php echo $_SESSION["phone"]; ?></label><br>
+                <label for="phone">携帯番号:<?php echo $data['phone']; ?></label><br>
                 <p></p>
             </div>
             <div>
                 <label for="condition">どのような症状ですか？</label><br>
                 <p>
 
-                <?php $chk_condition = $_SESSION['condition'];
-                    if (!empty($chk_condition)) {
-                    foreach($chk_condition as $key => $val){
+                <?php 
+                    if (!empty($condition)) {
+                    foreach($condition as $key => $val){
                     echo $val."<br />";
                     }
                 } ?> 
@@ -61,25 +58,21 @@
             </p>
             </div>
             <div>
-                <label for="condition">現在治療中の病気はありますか？</label><br>
+                <label for="treat">現在治療中の病気はありますか？</label><br>
                 <p> 
-                <?php $chk_treat =$_SESSION['treat'];
-                    if (!empty($chk_treat)) {
-                    foreach($chk_treat as $key => $val){
+                <?php 
+                    if (!empty($treat)) {
+                    foreach($treat as $key => $val){
                         echo $val."<br />";
                     }
                 } ?> 
             </div>
             <div>
-                <label for="allergy">アレルギー体質ですか？</label><br>
-                <p><?php echo $_SESSION["allergy"]; ?></p>
+                <label for="allergy">アレルギー体質ですか？<?php echo $data['allergy']; ?></label><br>
+                <p></p>
             </div>
 
-        <!-- リダイレクト先 -->
-        <?php
-        //header('Location: ./QR.php');
-        ?>
-        </body>
+
 
 
     </div>

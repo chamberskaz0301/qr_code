@@ -34,7 +34,7 @@
         <h1>お問い合わせフォーム</h1>
         <p>以下の内容でよろしければ「送信する」をクリックしてください。<br>
             内容を変更する場合は「戻る」をクリックして入力画面にお戻りください。</p>
-        <form method="post" action="complete_form.php">
+        <form method="post" action="db_insert.php">
             <div>
                 <label for="name">氏名 :<?php echo $_POST["name"]; ?></label>
                <p></p>
