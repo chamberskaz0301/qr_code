@@ -7,60 +7,31 @@
     <title>内科問診票QR</title>
 </head>
 <body>
-    <?php
-    $i =' <img src="https://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=localhost/qr/complete_form.php" alt="QRコード"/>';
-    ?>
 
 <?php
 
 require_once("./DBAccess.php");
 session_start();
 
-$chk_condition = $_SESSION['condition'];
-$condition= implode(",", $chk_condition );
-echo $condition;
+  $chk_condition = $_SESSION['condition'];
+  $condition= implode(",", $chk_condition );
 
-$chk_treat = $_SESSION['treat'];
-$treat= implode(",", $chk_treat );
-echo $treat;
+  $chk_treat = $_SESSION['treat'];
+  $treat= implode(",", $chk_treat );
 
 
 
-try{
-  $mydb = new PDO($host, $user, $pass);
-  $mydb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $mydb->beginTransaction();
+  $mydb = new DBAccess();
 
-  $stmt = $mydb->prepare('INSERT INTO png (name, kana, age, sex, phone, condition_ch, treat_ch,allergy ) VALUES (:name, :kana, :age, :gender, :phone, :condition, :treat, :allergy)');
-  
-  $stmt->bindParam( ':name', $_SESSION["name"], PDO::PARAM_STR);
-  $stmt->bindParam( ':kana', $_SESSION["kana"], PDO::PARAM_STR);
-  $stmt->bindParam( ':age', $_SESSION["age"], PDO::PARAM_STR);
-  $stmt->bindParam( ':gender', $_SESSION["gender"], PDO::PARAM_STR);
-  $stmt->bindParam( ':phone', $_SESSION["phone"], PDO::PARAM_STR);
-  $stmt->bindParam( ':condition',$condition , PDO::PARAM_STR);
-  $stmt->bindParam( ':treat', $treat, PDO::PARAM_STR);
-  $stmt->bindParam( ':allergy', $_SESSION["allergy"], PDO::PARAM_STR);
+  $params = [$_SESSION["name"], $_SESSION["kana"], $_SESSION["age"], $_SESSION["gender"], $_SESSION["phone"], $condition, $treat, $_SESSION["allergy"]];
+  $result = $mydb->execute("INSERT INTO png (name, kana, age, sex, phone, condition_ch, treat_ch,allergy ) VALUES(?, ?, ?, ?, ? ,? ,? ,?)", $params);
+  $ret = $mydb->select("SELECT id, name, kana, age, sex, phone, condition_ch, treat_ch,allergy from png");
+  foreach($ret as $data){}
+  $id = $data['id'];
 
 
-  $res = $stmt->execute();
-
-  if($res){
-      $mydb->commit();
-      header('Location:./pdf.php');
-  }
-
-
-}catch(PDOException $e){
-  echo $e->getMessage();
-
-  $mydb->rollback();
-  
-}finally{
-  $mydb = null;
-}
-
+  header("Location:./pdf.php?id=$id");
 
 
 ?>

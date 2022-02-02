@@ -1,5 +1,12 @@
 <?php
     require_once('./lib/tcpdf/tcpdf.php');
+    require_once("./DBAccess.php");
+
+    $mydb = new DBAccess();
+    $ret = $mydb->select("SELECT id, name, kana, age, sex, phone, condition_ch, treat_ch,allergy from png");
+    foreach($ret as $data){}
+    $number = $_GET['id'];
+    $id = $data['id'];
 
     session_start();
 
@@ -30,6 +37,7 @@
 
     $pdf->AddPage();
 
+    $pdf->Text(10, 5, "氏名:".$id); 
 
     $pdf->Text(10, 15, "氏名:".$name); 
     $pdf->Text(10, 30, "しめい:".$kana);
@@ -62,14 +70,26 @@
     }
     $y += 15;
     $pdf->Text(10, $y, "アレルギー体質ですか？:".$allergy);
+    
 
 
-    $html = '<img src="https://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=localhost/qr/complete_form.php">';
-	$pdf->writeHTML( $html, false, 0, true, false );
+
+    $images ='<img src= '; 
+    $a = '"';
+    $url = 'https://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=localhost/qr/complete_form.php?id=';
+    $numbers = $_GET['id'] . '"';
+    $full_url = $url.$numbers;
+    $end = ">'";
+    $full = $images.$a.$full_url.$end;
+
+   
+    
+	$pdf->writeHTML($full, false, 0, true, false);
+
+;
     
     //本文のフォント設定
     $pdf->setFont('kozminproregular','',12);
-    //$pdf->AddPage();
 
     $pdf->Output($filename, "I");
  

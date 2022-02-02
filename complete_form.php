@@ -3,13 +3,17 @@
     require_once("./DBAccess.php");
 
     $db = new DBAccess();
-    $ret = $db->select("SELECT id, name, kana, age, sex, phone, condition_ch, treat_ch,allergy from png");
+
+    $number = $_GET['id'];
+
+    $ret = $db->select("SELECT id, name, kana, age, sex, phone, condition_ch, treat_ch,allergy FROM png WHERE id = $number");
     foreach($ret as $data){
+        $id = $data['id'];
 
         $condition = explode(",", $data["condition_ch"]);
         $treat = explode(",", $data["treat_ch"]);
     }
-    
+     
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +29,7 @@
 
 
             <div>
-                <label for="name">氏名 :<?php echo $data['name']; ?></label>
+                <label for="name">氏名 :<?php echo $_GET["id"]; ?></label>
                <p></p>
             </div>
             <div>
@@ -71,6 +75,29 @@
                 <label for="allergy">アレルギー体質ですか？<?php echo $data['allergy']; ?></label><br>
                 <p></p>
             </div>
+
+
+ <?php
+
+     
+
+
+    
+    $url = 'https://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=localhost/qr/complete_form.php?id=';
+    $full_url = $url.$number;
+    
+    $images ='<img src= ';
+
+    $end = '>';
+
+    $full = $images.$full_url.$end;
+
+    echo $full;
+
+     ?>
+
+
+    
 
 
 
