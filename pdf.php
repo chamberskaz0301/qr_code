@@ -37,15 +37,15 @@
 
     $pdf->AddPage();
 
-    $pdf->Text(10, 5, "氏名:".$id); 
+    $pdf->Text(10, 15, "ID:".$id); 
 
-    $pdf->Text(10, 15, "氏名:".$name); 
-    $pdf->Text(10, 30, "しめい:".$kana);
-    $pdf->Text(10, 45, "年齢:".$age);
-    $pdf->Text(10, 60, "性別:".$gender);
-    $pdf->Text(10, 75, "電話番号:".$phone);
-     $pdf->Text(10, 105, "どのような状況ですか？:");
-     $y = 105; 
+    $pdf->Text(10, 30, "氏名:".$name); 
+    $pdf->Text(10, 45, "しめい:".$kana);
+    $pdf->Text(10, 60, "年齢:".$age);
+    $pdf->Text(10, 75, "性別:".$gender);
+    $pdf->Text(10, 105, "電話番号:".$phone);
+     $pdf->Text(10, 120, "どのような状況ですか？:");
+     $y = 120; 
      foreach($conditions as $condition) {
 
         if($condition){
@@ -72,21 +72,22 @@
     $pdf->Text(10, $y, "アレルギー体質ですか？:".$allergy);
     
 
-
-
+    //QR位置
+    $y += 10;
+    $pdf->SetXY(20,$y);
+    
+    //QR作成
     $images ='<img src= '; 
-    $a = '"';
-    $url = 'https://chart.apis.google.com/chart?chs=150x150&cht=qr&chl=localhost/qr/complete_form.php?id=';
+    $url =  '"' . 'https://chart.apis.google.com/chart?chs=100x100&cht=qr&chl=localhost/qr/complete_form.php?id=';
     $numbers = $_GET['id'] . '"';
     $full_url = $url.$numbers;
     $end = ">'";
-    $full = $images.$a.$full_url.$end;
+    $full = $images.$full_url.$end;
 
    
     
-	$pdf->writeHTML($full, false, 0, true, false);
+	$pdf->writeHTML($full, false, 0, true, true);
 
-;
     
     //本文のフォント設定
     $pdf->setFont('kozminproregular','',12);

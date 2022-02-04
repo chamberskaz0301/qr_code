@@ -5,14 +5,23 @@
     $mydb = new DBAccess();
 
     $number = $_POST['id'];
+    //全角ー＞半角
+    $number = mb_convert_kana($number, "a"); 
 
     $ret = $mydb->select("SELECT id, name, kana, age, sex, phone, condition_ch, treat_ch,allergy FROM png WHERE id = $number");
     foreach($ret as $data){
         $id = $data['id'];
 
+       
+
+    
+
+        //結合解除
         $condition = explode(",", $data["condition_ch"]);
         $treat = explode(",", $data["treat_ch"]);
     }
+
+
 ?>
 
     <!DOCTYPE html>
@@ -35,18 +44,17 @@
 
                 if (isset($_SESSION['id'])) {//ログインしているとき
                     $msg = 'こんにちは' . htmlspecialchars($username, \ENT_QUOTES, 'UTF-8') . 'さん';
-                    $link = '<a href="logout.php">ログアウト</a>';
+                    $link = '<a href="clinic_home.php">戻る</a>';
                 } else {//ログインしていない時
                     $msg = 'ログインしていません';
                     $link = '<a href="clinic.php">ログイン</a>';
                 }
             ?>
             <h2><?php echo $msg; ?></h2>
-            <?php echo $link; ?>
     
     
                 <div>
-                    <label for="name">氏名 :<?php echo $_GET["id"]; ?></label>
+                    <label for="name">氏名 :<?php echo $data["id"]; ?></label>
                    <p></p>
                 </div>
                 <div>
@@ -109,10 +117,13 @@
                     echo $full;
     
                 ?>
+
+                <?php echo $link; ?>
+
     
     
     
-            </div>
+    </div>
         </body>
     </html>
 
