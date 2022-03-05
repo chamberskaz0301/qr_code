@@ -4,7 +4,7 @@
 
     $mydb = new DBAccess();
 
-    $number = $_POST['id'];
+    $number = $_GET['id'];
 
     $ret = $mydb->select("SELECT id, name, kana, age, sex, phone, condition_ch, treat_ch,allergy FROM png WHERE id = $number");
     foreach($ret as $data){
@@ -26,23 +26,6 @@
         <div>
             <h1>内科問診票</h1>
 
-            <?php
-     
-            session_save_path("/xampp/tmp/"); 
-                session_start();
-
-                $username = $_SESSION['name'];
-
-                if (isset($_SESSION['id'])) {//ログインしているとき
-                    $msg = 'こんにちは' . htmlspecialchars($username, \ENT_QUOTES, 'UTF-8') . 'さん';
-                    $link = '<a href="logout.php">ログアウト</a>';
-                } else {//ログインしていない時
-                    $msg = 'ログインしていません';
-                    $link = '<a href="clinic.php">ログイン</a>';
-                }
-            ?>
-            <h2><?php echo $msg; ?></h2>
-            <?php echo $link; ?>
     
     
                 <div>
@@ -109,9 +92,8 @@
                     echo $full;
     
                 ?>
-    
-    
-    
+
+
             </div>
         </body>
     </html>

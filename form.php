@@ -13,7 +13,7 @@ session_start();
 <body>
 
     <?php
-    require_once('./lib/htmlentities.php');
+    require_once('./htmlentities.php');
     ?>
 
     <?php if(isset($errors)) : ?>
@@ -22,8 +22,14 @@ session_start();
         <?php endforeach; ?>
     <?php endif; ?>
 
-    <h1>内科問診票</h1>
 
+    <p class="intro">出展者番号：PI018</p><bR>
+    <p class="intro">所属：HAL名古屋</p><br>
+    <p class="intro">学部：情報処理学科情報処理プログラム選考</p><br>
+    <p class="intro">学年:2年</p><br>
+    <p class="intro">氏名：井上　千久</p>
+
+    <h1>内科問診票</h1>
     <h2>以下のフォームに情報を入力してさい</h2>
 
  
@@ -65,7 +71,7 @@ session_start();
         <p>どのような症状ですか？<br>
 
         <label class="vertical">
-            <input type="checkbox" class="condition" name="condition[fever]" value="発熱"<?php if($html['condition']['fever'] == 'fever') echo ' checked';?> checeee2ked  >発熱
+            <input type="checkbox" class="condition" name="condition[fever]" value="発熱"<?php if($html['condition']['fever'] == 'fever') echo ' checked';?>   >発熱
         </label>
         <label class="vertical">
             <input type="checkbox"  class="condition"name="condition[throat]" value="のどの痛み"<?php if($html['condition']['throat'] == 'throat') echo ' checked';?>>のどの痛み

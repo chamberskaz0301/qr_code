@@ -7,7 +7,10 @@
     $_SESSION['kana']= $_POST["kana"];
     $_SESSION['age']= $_POST["age"];
     $_SESSION['gender']= $_POST["gender"];
-    $_SESSION['phone']= $_POST["phone"];
+
+    $number = mb_convert_kana($_POST["phone"], "a"); 
+
+    $_SESSION['phone']= $number;
     $_SESSION['condition']= $_POST["condition"];
     $_SESSION['treat']= $_POST["treat"];
     $_SESSION['allergy']= $_POST["allergy"];
@@ -36,23 +39,23 @@
             内容を変更する場合は「戻る」をクリックして入力画面にお戻りください。</p>
         <form method="post" action="db_insert.php">
             <div>
-                <label for="name">氏名 :<?php echo $_POST["name"]; ?></label>
+                <label for="name">氏名 :<?php echo $name; ?></label>
                <p></p>
             </div>
             <div>
-                <label for="kana">しめい:<?php echo $_POST["kana"]; ?></label>
+                <label for="kana">しめい:<?php echo $kana; ?></label>
                 <p></p>
             </div>
             <div>
-                <label for="age">年齢:<?php echo $_POST["age"]; ?></label>
+                <label for="age">年齢:<?php echo $age; ?></label>
                 <p></p>
             </div>
             <div>
-                <label for="gender">性別:<?php echo $_POST["gender"]; ?></label><br>
+                <label for="gender">性別:<?php echo $gender; ?></label><br>
                 <p></p>
             </div>
             <div>
-                <label for="phone">携帯番号:<?php echo $_POST["phone"]; ?></label><br>
+                <label for="phone">携帯番号:<?php echo $phone; ?></label><br>
                 <p></p>
             </div>
             <div>
@@ -80,7 +83,7 @@
             </div>
             <div>
                 <label for="allergy">アレルギー体質ですか？</label><br>
-                <p><?php echo $_POST["allergy"]; ?></p>
+                <p><?php echo $allergy; ?></p>
             </div>
             <button id="button" class="send" type="submit" name="send">PDF化する</button>
             <p></p>

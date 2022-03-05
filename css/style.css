@@ -16,6 +16,11 @@ form{
 div{
     text-align: center;
 }
+.intro{
+    font-size: 20px;
+    text-align: left;
+    position: fixed;
+}
 
 .vertical{
     display: block;

@@ -13,7 +13,7 @@ session_start();
 <body>
 
     <?php
-    require_once('./lib/htmlentities.php');
+    require_once('./htmlentities.php');
     ?>
 
     <?php if(isset($errors)) : ?>

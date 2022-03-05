@@ -1,6 +1,19 @@
 <?php
 
     require_once("./DBAccess.php");
+    session_start();
+
+    $username = $_SESSION['name'];
+
+    if (isset($_SESSION['id'])) {//ログインしているとき
+        $msg = 'こんにちは' . htmlspecialchars($username, \ENT_QUOTES, 'UTF-8') . 'さん';
+        $link = '<a href="clinic.php">ログアウト</a>';
+        $back = '<a href="clinic_home.php">戻る</a>';
+        
+    } else {//ログインしていない時
+        $msg = 'ログインしていません';
+        $link = '<a href="clinic.php">ログイン</a>';
+    }
 
     $mydb = new DBAccess();
 
@@ -12,13 +25,13 @@
     foreach($ret as $data){
         $id = $data['id'];
 
-       
-
-    
-
         //結合解除
         $condition = explode(",", $data["condition_ch"]);
         $treat = explode(",", $data["treat_ch"]);
+    }
+
+    if(!$id){
+        
     }
 
 
@@ -35,21 +48,7 @@
         <div>
             <h1>内科問診票</h1>
 
-            <?php
-     
-            session_save_path("/xampp/tmp/"); 
-                session_start();
 
-                $username = $_SESSION['name'];
-
-                if (isset($_SESSION['id'])) {//ログインしているとき
-                    $msg = 'こんにちは' . htmlspecialchars($username, \ENT_QUOTES, 'UTF-8') . 'さん';
-                    $link = '<a href="clinic_home.php">戻る</a>';
-                } else {//ログインしていない時
-                    $msg = 'ログインしていません';
-                    $link = '<a href="clinic.php">ログイン</a>';
-                }
-            ?>
             <h2><?php echo $msg; ?></h2>
     
     
@@ -117,8 +116,9 @@
                     echo $full;
     
                 ?>
-
-                <?php echo $link; ?>
+                <br/>
+                <?php echo  $link; ?>
+                <?php echo  $back; ?>
 
     
     

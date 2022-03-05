@@ -19,6 +19,9 @@
             if (isset($_SESSION['id'])) {//ログインしているとき
                 $msg = 'こんにちは' . htmlspecialchars($username, \ENT_QUOTES, 'UTF-8') . 'さん';
                 $link = '<a href="clinic.php">ログアウト</a>';
+
+
+                
             } else {//ログインしていない時
                 $msg = 'ログインしていません';
                 $link = '<a href="clinic.php">ログイン</a>';
